@@ -9,4 +9,9 @@ import { HttpService } from './services/http.service';
 export class AppComponent {
   title = 'Rate my cakes';
   constructor(private _httpService: HttpService){}
+  
+  dataFromChild(eventData){
+    console.log(eventData);
+  }
+
 }

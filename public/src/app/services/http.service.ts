@@ -9,15 +9,24 @@ export class HttpService {
   constructor(private _http: HttpClient) {
   }
   getCakes() {
-    // our http response is an Observable, store it in a variable
-    let tempObservable = this._http.get('/api/cakes/retrieveall');
-    // subscribe to the Observable and provide the code we would like to do with our data from the response
-    tempObservable.subscribe(data => console.log("Got our cakes!", data));
+    return this._http.get('/api/cakes/retrieveall'); 
   }
-  getById(_id: string) {
-
-    let tempobservable = this._http.get('/api/cakes/retrieveId/' + _id);
-    tempobservable.subscribe(data => console.log("Got our cakes!", data));
-
+  newCake(data: any) {
+    return this._http.post('/api/cakes/newcake', data); 
+  }
+  cakeDelete(data: any) {
+    return this._http.delete('/api/cakes/Delete/' + data['id']);
+  }
+  cakeEdit(id:any, data: any) {
+    return this._http.post('/api/cakes/Update/'+ id, data);
+  }
+  rateCake(id:any, data: any) {
+    return this._http.post('/api/cakes/addrating/'+ id, data);
+  }
+  getById(data: any) {
+    return this._http.get('/api/cakes/retrieveId/' + data['id']); /* Same with this one */
+  }
+  e2endtest(num: any) {
+    return this._http.post('/e2etest', num);
   }
 }

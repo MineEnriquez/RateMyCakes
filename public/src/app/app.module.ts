@@ -6,11 +6,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NewCakeComponent } from './components/new-cake/new-cake.component';
 import { FormsModule } from "@angular/forms";
+import { TasktoshowComponent } from './components/tasktoshow/tasktoshow.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    NewCakeComponent
+    NewCakeComponent,
+    TasktoshowComponent
   ],
   imports: [
     BrowserModule,

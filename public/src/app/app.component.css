@@ -1,19 +1,20 @@
 .wrapper {
     width: 1000px;
-    border: lightgray solid 3px;
+    /* border: lightgray solid 3px; */
     margin: 50px auto;
     padding: 30px 30px;
     align-items: center;
-    background: whitesmoke;
+    /* background: whitesmoke; */
   }
 h1, h2, .textCentered{
     text-align: center;
 }
 .header{
-    background-color: #78C2AD;
+    height: 80px;
+    /* background-color: #78C2AD; */
 }
 .footer{
-    background-color: #78C2AD;
+    /* background-color: #78C2AD; */
     height: 400px;
 }
 .cakeInfo{

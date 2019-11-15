@@ -30,9 +30,22 @@ module.exports = {
     },
     updateId: function (req, res) {
         console.log("--------------------------");
-        console.log("Update a document");
+        console.log("UPDATE BY ID a document");
         console.log(req.body);
         Cake.update({ _id: req.params.id }, req.body)
+            .then(data => {
+                console.log(data);
+                res.json({ data: data[0] })
+            })
+            .catch(err => res.json(err));
+    },
+    rateCake: function (req, res) {
+        console.log("--------------------------");
+        console.log("RATE CAKE to a document");
+        console.log(req.body);
+        console.log(req.params.id)
+     
+        Cake.updateOne({ _id: req.params.id }, {$push:{arrayratings: req.body}})
             .then(data => {
                 console.log(data);
                 res.json({ data: data[0] })
