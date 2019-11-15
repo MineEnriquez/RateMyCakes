@@ -72,29 +72,9 @@
     <div>
     </div>
     <br>
-    <div *ngIf="displaycake" class="container">
-      <div class="row">
-        <div class="col">
-          <h1>
-            Baked by {{selectedbaker.bakername}}
-          </h1>
-          <img class="cakelargerimage" src={{selectedbaker.imageurl}} alt="">
-        </div>
-        <div class="col">
-          <h4>Average rating: <span class="yellow">{{averagerating}} </span></h4><br>
-          <div *ngFor="let review of selectedbaker.arrayratings;">
-            <br>
-            <h5>{{review.comment}}</h5>
-            <h6>{{review.rating}} stars</h6>
-          </div>
-        </div>
-      </div>
+     <div>
+      <app-caketoshow *ngIf="selectedCake" [caketoshow]="selectedCake"></app-caketoshow>
 
-      URL: {{selectedbaker.imageurl}}
-
-    </div>
-    <div>
-      <app-caketoshow></app-caketoshow>
     </div>
     <div class="jumbotron">
     </div>

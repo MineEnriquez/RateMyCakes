@@ -1,0 +1,20 @@
+<div class="container">
+        <div class="row">
+          <div class="col">
+            <h1 name="baker" id="baker">
+              Baked by {{caketoshow.bakername}}
+            </h1>
+            <img class="cakelargerimage" src= {{caketoshow.imageurl}} alt="">
+          </div>
+          <div class="col" >
+            <h4>Average rating: <span class="yellow">{{caketoshow.averagerating}} </span></h4><br>
+            <div class="scrollable">
+                <div *ngFor="let review of caketoshow.arrayratings;"  >
+                    <br>
+                    <h5>{{review.comment}}</h5>
+                    <h6>{{review.rating}} stars</h6>
+                </div>
+            </div>
+          </div>
+        </div>
+</div>

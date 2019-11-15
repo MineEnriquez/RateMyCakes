@@ -23,8 +23,9 @@ export class HttpService {
   rateCake(id:any, data: any) {
     return this._http.post('/api/cakes/addrating/'+ id, data);
   }
-  getById(data: any) {
-    return this._http.get('/api/cakes/retrieveId/' + data['id']); /* Same with this one */
+  getById(id:any) {
+    console.log("Get Cake by Id", id);
+    return this._http.get('/api/cakes/retrieveId/' + id); /* Same with this one */
   }
   e2endtest(num: any) {
     return this._http.post('/e2etest', num);
