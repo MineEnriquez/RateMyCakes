@@ -14,13 +14,91 @@
   <div class="jumbotron-fluid">
     <h1>Rate my cakes</h1>
   </div>
-  <div class="container wrapper">
+  <div class="container">
     <div class="row">
-      <app-new-cake></app-new-cake>
+      <div class="col-5">
+        <legend>Submit a cake to be rated</legend>
+        <form #IsFormValid="ngForm">
+          <fieldset>
+            <div class="form-group">
+              <label for="bakername">Baker name:</label>
+              <!-- Errors:{{bakername.errors | json}}
+                       Valid:{{bakername.valid | json}} -->
+              <div class="error" *ngIf="bakernameCtrl.dirty && bakernameCtrl.invalid">Baker's name must be 3 or more
+                chars </div>
+
+              <input type="text" class="form-control" name="bakername" id="bakername" required minlength="3"
+                maxlength="24" [(ngModel)]="newbaker.bakername" #bakernameCtrl="ngModel">
+            </div>
+
+            <div class="form-group">
+              <label for="imageurl">Image url:</label>
+              <!-- Errors:{{imageurl.errors | json}}
+                       Valid:{{imageurl.valid | json}} -->
+              <div class="error" *ngIf="imageurlCtrl.dirty && imageurlCtrl.invalid">Image url most be provided</div>
+              <input type="url" class="form-control" id="imageurl" name="imageurl" required minlength="10"
+                maxlength="500" [(ngModel)]="newbaker.imageurl" #imageurlCtrl="ngModel">
+            </div>
+          </fieldset>
+          <input (click)="onSubmit()" [disabled]="IsFormValid.invalid" class="btn btn-secondary" type="submit"
+            value="Submit" />
+
+        </form>
+
+      </div>
+      <div class="col-7 cakeslist">
+        <div *ngFor="let cake of cakes; let i = index" class="row cakeRow">
+          <div class="col">
+            <img (click)="showCake(cake)" class="cakeimg" src={{cake.imageurl}} alt="">
+          </div>
+          <div class="col">
+            <div class="form-group">
+              <select name="rate.rating" class="custom-select" [(ngModel)]="rate[i].rating">
+                <option value="5" selected="">5 stars</option>
+                <option value="4">4 stars</option>
+                <option value="3">3 stars</option>
+                <option value="2">2 stars</option>
+                <option value="1">1 star</option>
+              </select>
+            </div>
+            <h5>Comments:</h5>
+            <textarea name="rate.comment" id="rate.comment" [(ngModel)]="rate[i].comment" cols="30" rows="2"></textarea>
+            <input type="submit" (click)="rateMyCake(cake._id, i)" value="Rate!">
+          </div>
+        </div>
+      </div>
     </div>
-  </div>
-  <div class="footer jumbotron">
-  </div>
+
+    <div>
+    </div>
+    <br>
+    <div *ngIf="displaycake" class="container">
+      <div class="row">
+        <div class="col">
+          <h1>
+            Baked by {{selectedbaker.bakername}}
+          </h1>
+          <img class="cakelargerimage" src={{selectedbaker.imageurl}} alt="">
+        </div>
+        <div class="col">
+          <h4>Average rating: <span class="yellow">{{averagerating}} </span></h4><br>
+          <div *ngFor="let review of selectedbaker.arrayratings;">
+            <br>
+            <h5>{{review.comment}}</h5>
+            <h6>{{review.rating}} stars</h6>
+          </div>
+        </div>
+      </div>
+
+      URL: {{selectedbaker.imageurl}}
+
+    </div>
+    <div>
+      <app-caketoshow></app-caketoshow>
+    </div>
+    <div class="jumbotron">
+    </div>
+    </div>
 </body>
 
 </html>
